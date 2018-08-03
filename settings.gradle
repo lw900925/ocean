@@ -1,0 +1,6 @@
+rootProject.name = 'ocean'
+include(
+        "ocean-core",
+        "ocean-oauth2",
+        "ocean-restful"
+)

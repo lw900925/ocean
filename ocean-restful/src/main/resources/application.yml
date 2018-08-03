@@ -1,0 +1,76 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: ocean-restful-server
+  datasource:
+    url: jdbc:mysql://10.10.10.229:3306/ocean?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+    open-in-view: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtcrMpo3qSUBunWCcvyQ1
+          i8agSUpJrU/6ZN9xtlqSTL5lCne51rU1ikAmubw3rmZIQP7s8kOPXJJgvANloY+J
+          wj793FnMHnK51Se86+yHSnqrR6CdMMF77y8hEc4BIRqIcgCLUTk2FaEiYSGki01N
+          58l+n0tdHLW6vSc75Yz9IuG3iiI+HA5CKdSEWHT6DlZ4m8VUzxYmGEMIRfqAdDSO
+          5EHIjQJJOhssnNfs5CXL7i7h/6VktriFIPg+3hnqbhrHhea+qT081Czv8I5/gjTG
+          +8o7qrN5Di3TOTZynACcAC7hcfCxmwOequa/LrGWXaS6J0pz+8WijZuAyNBqNujn
+          ZQIDAQAB
+          -----END PUBLIC KEY-----
+      id: app
+      user-info-uri: http://localhost:8080/oauth/user_info
+
+logging:
+  level:
+    org.matrixstudio: debug
+    io.swagger: error
+#    org.hibernate.type: trace
+
+management:
+  endpoint:
+    health:
+      show-details: when_authorized
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+springfox:
+  docket:
+    group-name: ocean
+    base-package: org.matrixstudio
+  api-info:
+    title: "MoKuai RESTful API"
+    description: "This is MoKuai RESTful API for web & mobile app"
+    version: "1.0.0"
+    contact:
+      name: liuwei
+      url: http://lw900925.github.io
+      email: lw900925@163.com
+  oauth:
+    name: oauth2
+    app-name: ${spring.application.name}
+    client-id: "94984796"
+    client-secret: "5ldDM0uAAsCjW5ZN"
+    token-url: http://localhost:8080/oauth/token
+    scopes:
+      - name: "app"
+        description: "Default App Scope"

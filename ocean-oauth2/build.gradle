@@ -1,0 +1,13 @@
+dependencies {
+    compile project(":ocean-core")
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${springSecurityOAuth2AutoConfigurationVersion}") {
+        exclude group: "org.codehaus.jackson"
+    }
+
+    compile("mysql:mysql-connector-java:${mysqlConnectorVersion}")
+}

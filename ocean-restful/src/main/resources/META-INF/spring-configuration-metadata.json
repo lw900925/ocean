@@ -1,0 +1,106 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties",
+      "name": "springfox",
+      "type": "org.matrixstudio.ocean.restful.config.Swagger2Properties"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties",
+      "name": "springfox.api-info",
+      "sourceMethod": "getApiInfo()",
+      "type": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo",
+      "name": "springfox.api-info.contact",
+      "sourceMethod": "getContact()",
+      "type": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo$Contact"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties",
+      "name": "springfox.docket",
+      "sourceMethod": "getDocket()",
+      "type": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Docket"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties",
+      "name": "springfox.oauth",
+      "sourceMethod": "getOauth()",
+      "type": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Oauth"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo$Contact",
+      "name": "springfox.api-info.contact.email",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo$Contact",
+      "name": "springfox.api-info.contact.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo$Contact",
+      "name": "springfox.api-info.contact.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo",
+      "name": "springfox.api-info.description",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo",
+      "name": "springfox.api-info.title",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$ApiInfo",
+      "name": "springfox.api-info.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Docket",
+      "name": "springfox.docket.base-package",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Docket",
+      "name": "springfox.docket.group-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Oauth",
+      "name": "springfox.oauth.app-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Oauth",
+      "name": "springfox.oauth.client-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Oauth",
+      "name": "springfox.oauth.client-secret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Oauth",
+      "name": "springfox.oauth.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Oauth",
+      "name": "springfox.oauth.scopes",
+      "type": "java.util.List<org.matrixstudio.ocean.restful.config.Swagger2Properties.Oauth.Scope>"
+    },
+    {
+      "sourceType": "org.matrixstudio.ocean.restful.config.Swagger2Properties$Oauth",
+      "name": "springfox.oauth.token-url",
+      "type": "java.lang.String"
+    }
+  ]
+}
