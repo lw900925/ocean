@@ -1,11 +1,10 @@
 server:
   port: 8081
-
 spring:
   application:
     name: ocean-restful-server
   datasource:
-    url: jdbc:mysql://10.10.10.229:3306/ocean?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    url: jdbc:mysql://192.168.8.92:3306/ocean?useUnicode=true&characterEncoding=UTF8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -58,8 +57,8 @@ springfox:
     group-name: ocean
     base-package: org.matrixstudio
   api-info:
-    title: "MoKuai RESTful API"
-    description: "This is MoKuai RESTful API for web & mobile app"
+    title: "Ocean RESTful API"
+    description: "This is Ocean RESTful API for web & mobile app"
     version: "1.0.0"
     contact:
       name: liuwei
@@ -74,3 +73,4 @@ springfox:
     scopes:
       - name: "app"
         description: "Default App Scope"
+

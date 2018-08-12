@@ -2,13 +2,12 @@ package org.matrixstudio.ocean.restful.service;
 
 import org.matrixstudio.ocean.core.model.entity.Role;
 import org.matrixstudio.ocean.core.model.entity.User;
-import org.matrixstudio.ocean.core.repository.RoleRepository;
-import org.matrixstudio.ocean.core.repository.UserRepository;
+import org.matrixstudio.ocean.core.repository.jpa.RoleRepository;
+import org.matrixstudio.ocean.core.repository.jpa.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,10 +15,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,8 +34,6 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private JavaMailSender mailSender;
 
     @Transactional(readOnly = true)
     public Page<User> list(String search, Pageable pageable) {
@@ -104,10 +103,6 @@ public class UserService {
         user = create(user);
         user.setEnabled(false);
         user = userRepository.save(user);
-
-        // 发送邮件确认
-        MimeMessage message = mailSender.createMimeMessage();
-
 
         return user;
     }

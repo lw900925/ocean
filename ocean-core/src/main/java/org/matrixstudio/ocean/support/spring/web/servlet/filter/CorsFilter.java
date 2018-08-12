@@ -1,11 +1,13 @@
-package org.matrixstudio.ocean.support.spring.web.filter;
+package org.matrixstudio.ocean.support.spring.web.servlet.filter;
 
+import org.matrixstudio.ocean.support.spring.web.servlet.wrapper.InputStreamRequestWrapper;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequestWrapper;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,11 +24,13 @@ public class CorsFilter extends OncePerRequestFilter {
         response.setHeader("Access-Control-Max-Age", "1800");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me, Authorization, X-Auth-Token");
 
+        ServletRequestWrapper requestWrapper = new InputStreamRequestWrapper(request);
+
         // 对所有OPTIONS请求放行
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            chain.doFilter(request, response);
+            chain.doFilter(requestWrapper, response);
         }
     }
 }

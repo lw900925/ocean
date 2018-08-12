@@ -1,4 +1,4 @@
-package org.matrixstudio.ocean.core.repository;
+package org.matrixstudio.ocean.core.repository.jpa;
 
 import org.matrixstudio.ocean.core.model.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;

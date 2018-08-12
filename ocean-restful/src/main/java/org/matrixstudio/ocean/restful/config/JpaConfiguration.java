@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootConfiguration
-@EnableJpaRepositories("org.matrixstudio.ocean.core.repository")
+@EnableJpaRepositories("org.matrixstudio.ocean.core.repository.jpa")
 @EntityScan("org.matrixstudio.ocean.core.model.entity")
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider", dateTimeProviderRef = "localDateTimeProvider")
 public class JpaConfiguration {

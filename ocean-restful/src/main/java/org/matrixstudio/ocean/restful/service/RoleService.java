@@ -1,7 +1,7 @@
 package org.matrixstudio.ocean.restful.service;
 
 import org.matrixstudio.ocean.core.model.entity.Role;
-import org.matrixstudio.ocean.core.repository.RoleRepository;
+import org.matrixstudio.ocean.core.repository.jpa.RoleRepository;
 import org.matrixstudio.ocean.restful.controller.RestException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

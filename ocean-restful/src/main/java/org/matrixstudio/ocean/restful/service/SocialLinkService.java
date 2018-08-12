@@ -1,7 +1,7 @@
 package org.matrixstudio.ocean.restful.service;
 
 import org.matrixstudio.ocean.core.model.entity.SocialLink;
-import org.matrixstudio.ocean.core.repository.SocialLinkRepository;
+import org.matrixstudio.ocean.core.repository.jpa.SocialLinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

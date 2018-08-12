@@ -1,6 +1,6 @@
 package org.matrixstudio.ocean.oauth2.config.security.oauth2;
 
-import org.matrixstudio.ocean.core.repository.ClientRepository;
+import org.matrixstudio.ocean.core.repository.jpa.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;

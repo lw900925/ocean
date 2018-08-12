@@ -1,4 +1,4 @@
-package org.matrixstudio.ocean.core.repository;
+package org.matrixstudio.ocean.core.repository.jpa;
 
 import org.matrixstudio.ocean.core.model.entity.User;
 import org.springframework.data.domain.Page;

@@ -5,8 +5,8 @@ allprojects {
 
 buildscript {
     ext {
-        kotlinVersion = '1.2.51'
-        springBootVersion = '2.0.3.RELEASE'
+        kotlinVersion = '1.2.60'
+        springBootVersion = '2.0.4.RELEASE'
     }
     repositories {
         maven {
@@ -94,5 +94,11 @@ subprojects {
             downloadJavadoc = true
             downloadSources = true
         }
+    }
+
+    tasks.withType(Javadoc) {
+        options.addStringOption("Xdoclint:none", "-quiet")
+        options.addStringOption("encoding", "UTF-8")
+        options.addStringOption("charSet", "UTF-8")
     }
 }
