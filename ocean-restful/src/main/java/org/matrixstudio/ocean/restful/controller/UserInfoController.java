@@ -1,4 +1,4 @@
-package org.matrixstudio.ocean.restful.config.security;
+package org.matrixstudio.ocean.restful.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,7 +13,7 @@ import java.security.Principal;
 
 @RestController
 @Api(description = "用户信息", tags = "UserInfo")
-public class UserInfoEndpoint {
+public class UserInfoController {
 
     @Autowired
     private UserRepository userRepository;

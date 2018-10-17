@@ -11,8 +11,8 @@ import java.util.List;
 public class Swagger2Properties {
 
     private Docket docket = new Docket();
-    private ApiInfo apiInfo = new ApiInfo();
-    private Oauth oauth = new Oauth();
+    private ApiInfo apiInfo;
+    private Oauth oauth;
 
     @Data
     static class Docket {

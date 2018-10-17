@@ -5,8 +5,8 @@ allprojects {
 
 buildscript {
     ext {
-        kotlinVersion = '1.2.60'
-        springBootVersion = '2.0.4.RELEASE'
+        kotlinVersion = '1.2.71'
+        springBootVersion = '2.0.6.RELEASE'
     }
     repositories {
         maven {
@@ -39,10 +39,10 @@ subprojects {
     targetCompatibility = 1.8
 
     ext {
-        springSecurityOAuth2AutoConfigurationVersion = "2.0.1.RELEASE"
-        lombokVersion = "1.18.0"
+        springSecurityOAuth2AutoConfigurationVersion = "2.0.4.RELEASE"
+        lombokVersion = "1.18.2"
         mysqlConnectorVersion = "6.0.6"
-        guavaVersion = "25.0-jre"
+        guavaVersion = "26.0-jre"
         springfoxSwagger2Version = "2.9.2"
     }
 

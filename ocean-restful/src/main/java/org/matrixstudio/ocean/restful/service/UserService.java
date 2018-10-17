@@ -2,6 +2,7 @@ package org.matrixstudio.ocean.restful.service;
 
 import org.matrixstudio.ocean.core.model.entity.Role;
 import org.matrixstudio.ocean.core.model.entity.User;
+import org.matrixstudio.ocean.core.model.entity.UserProfile;
 import org.matrixstudio.ocean.core.repository.jpa.RoleRepository;
 import org.matrixstudio.ocean.core.repository.jpa.UserRepository;
 import org.springframework.beans.BeanUtils;
@@ -71,16 +72,19 @@ public class UserService {
 
     public User update(User user) {
         // 根据username查询用户
-        User newUser = userRepository.findById(user.getUsername()).orElseThrow(EntityNotFoundException::new);
-        BeanUtils.copyProperties(user, newUser, "username", "password");
+        User origUser = userRepository.findById(user.getUsername()).orElseThrow(EntityNotFoundException::new);
+        BeanUtils.copyProperties(user, origUser, "username", "password", "profile");
 
         if (StringUtils.hasText(user.getPassword())) {
-            newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+            origUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
 
         // 保存角色
-        setUserRoles(user.getAuthorities(), newUser);
-        return userRepository.save(newUser);
+        setUserRoles(user.getAuthorities(), origUser);
+
+        // 保存profile
+        setUserProfile(user.getProfile(), origUser);
+        return userRepository.save(origUser);
     }
 
     /**
@@ -92,6 +96,12 @@ public class UserService {
         List<String> roleIds = authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         Set<Role> roles = new HashSet<>(roleRepository.findAllById(roleIds));
         user.setAuthorities(roles);
+    }
+
+    private void setUserProfile(UserProfile profile, User user) {
+        UserProfile origUserProfile = user.getProfile();
+        BeanUtils.copyProperties(profile, origUserProfile, "oid", "user");
+        user.setProfile(origUserProfile);
     }
 
     public User register(String email, String password, String username) {

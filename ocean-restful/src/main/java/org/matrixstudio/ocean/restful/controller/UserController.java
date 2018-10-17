@@ -46,7 +46,7 @@ public class UserController {
 
     @ApiOperation(value = "更新用户")
     @PutMapping
-    public ResponseEntity<User> update(@RequestBody @Valid User user) {
+    public ResponseEntity<User> update(@RequestBody @Validated User user) {
         return ResponseEntity.ok(userService.update(user));
     }
 

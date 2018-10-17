@@ -4,7 +4,7 @@ spring:
   application:
     name: ocean-restful-server
   datasource:
-    url: jdbc:mysql://192.168.8.92:3306/ocean?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    url: jdbc:mysql://192.168.8.82:3306/ocean?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2b8
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -6,14 +6,12 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.matrixstudio.ocean.core.util.JacksonMapper;
-import org.matrixstudio.ocean.support.spring.web.interceptor.HttpPrinterInterceptor;
 import org.matrixstudio.ocean.support.spring.web.servlet.filter.CorsFilter;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.Filter;
@@ -51,14 +49,5 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     @Bean
     public JacksonMapper jacksonMapper(ObjectMapper objectMapper) {
         return new JacksonMapper(objectMapper);
-    }
-
-    /**
-     * <p>Add custom interceptors.</p>
-     * @param registry {@link InterceptorRegistry} object
-     */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new HttpPrinterInterceptor()).addPathPatterns("/**");
     }
 }
