@@ -4,14 +4,13 @@ spring:
   application:
     name: ocean-restful-server
   datasource:
-    url: jdbc:mysql://192.168.8.82:3306/ocean?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2b8
+    url: jdbc:mysql://10.0.103.46:3306/ocean?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2b8
     username: root
-    password: 123456
+    password: 111111
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL57Dialect
-    show-sql: true
     hibernate:
       ddl-auto: update
       use-new-id-generator-mappings: true
@@ -36,12 +35,23 @@ security:
           -----END PUBLIC KEY-----
       id: app
       user-info-uri: http://localhost:8080/oauth/user_info
+      ignore-urls:
+        - "/"
+        - "/csrf"
+        - "/**/swagger-ui/index.html"
+        - "/**/swagger-ui/**"
+        - "/**/swagger-resources/**"
+        - "/**/api-docs"
+        - "/oauth/user_info"
+        - "/resources"
 
 logging:
   level:
-    org.matrixstudio: debug
+    io.lw900925: debug
     io.swagger: error
 #    org.hibernate.type: trace
+    org.hibernate.sql: debug
+    io.lw900925.ocean.core.repository.mybatis.mapper: trace
 
 management:
   endpoint:
@@ -51,11 +61,14 @@ management:
     web:
       exposure:
         include: "*"
+  health:
+    redis:
+      enabled: false
 
 springfox:
   docket:
     group-name: ocean
-    base-package: org.matrixstudio
+    base-package: io.lw900925
   api-info:
     title: "Ocean RESTful API"
     description: "This is Ocean RESTful API for web & mobile app"
@@ -74,3 +87,8 @@ springfox:
       - name: "app"
         description: "Default App Scope"
 
+mybatis:
+  mapper-locations: classpath*:io/lw900925/ocean/core/repository/mybatis/xml/*.xml
+  type-aliases-package: io.lw900925.ocean.core.model.entity
+  configuration:
+    map-underscore-to-camel-case: true

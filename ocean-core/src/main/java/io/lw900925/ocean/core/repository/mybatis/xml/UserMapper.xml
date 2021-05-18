@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.lw900925.ocean.core.repository.mybatis.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="io.lw900925.ocean.core.model.entity.User">
+        <id column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="account_non_expired" jdbcType="BOOLEAN" property="accountNonExpired" />
+        <result column="account_non_locked" jdbcType="BOOLEAN" property="accountNonLocked" />
+        <result column="credentials_non_expired" jdbcType="BOOLEAN" property="credentialsNonExpired" />
+        <result column="enabled" jdbcType="BOOLEAN" property="enabled" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+        <result column="client_capability" jdbcType="INTEGER" property="clientCapability" typeHandler="io.lw900925.ocean.support.mybatis.typehandler.EnumTypeHandler" />
+        <result column="display_name" jdbcType="VARCHAR" property="displayName" />
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+        <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    </resultMap>
+
+    <sql id="columns">
+        username,
+        password,
+        account_non_expired,
+        account_non_locked,
+        credentials_non_expired,
+        enabled,
+        email,
+        phone_number,
+        client_capability,
+        display_name,
+        avatar_url,
+        birthday
+    </sql>
+
+    <select id="select" resultMap="BaseResultMap">
+        SELECT
+            <include refid="columns" />
+        FROM oc_user
+    </select>
+
+    <select id="selectOne" resultMap="BaseResultMap">
+        SELECT
+            <include refid="columns" />
+        FROM oc_user
+        <where>
+            username = #{username}
+        </where>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true">
+
+    </insert>
+
+    <delete id="delete">
+
+    </delete>
+
+    <update id="update">
+
+    </update>
+</mapper>

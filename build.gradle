@@ -1,19 +1,18 @@
 allprojects {
-    group = 'org.matrixstudio.ocean'
+    group = 'io.lw900925.ocean'
     version = '0.0.1-SNAPSHOT'
 }
 
 buildscript {
     ext {
-        kotlinVersion = '1.2.71'
-        springBootVersion = '2.0.6.RELEASE'
+        kotlinVersion = '1.4.32'
+        springBootVersion = '2.4.5'
     }
     repositories {
         maven {
-            url "http://maven.aliyun.com/nexus/content/groups/public"
+            url "https://maven.aliyun.com/nexus/content/groups/public"
         }
         mavenLocal()
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -39,31 +38,51 @@ subprojects {
     targetCompatibility = 1.8
 
     ext {
-        springSecurityOAuth2AutoConfigurationVersion = "2.0.4.RELEASE"
-        lombokVersion = "1.18.2"
+        springSecurityOAuth2AutoConfigurationVersion = "2.1.18.RELEASE"
         mysqlConnectorVersion = "6.0.6"
         guavaVersion = "26.0-jre"
-        springfoxSwagger2Version = "2.9.2"
+        springfoxVersion = "3.0.0"
+        hibernateValidatorVersion = "7.0.1.Final"
+        mybatisSpringBootStarterVersion = "2.1.4"
+        mybatisTypeHandlersJsr310Version = "1.0.2"
+        apacheCommonsLang3Version = "3.11"
     }
 
     repositories {
         maven {
-            url "http://maven.aliyun.com/nexus/content/groups/public"
+            url "https://maven.aliyun.com/nexus/content/groups/public"
         }
         mavenLocal()
-        jcenter()
         mavenCentral()
     }
 
     dependencies {
         // Kotlin support
-        compile('com.fasterxml.jackson.module:jackson-module-kotlin')
-        compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        compile("org.jetbrains.kotlin:kotlin-reflect")
+        implementation('com.fasterxml.jackson.module:jackson-module-kotlin')
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-        compile("com.google.guava:guava:${guavaVersion}")
-        compileOnly("org.projectlombok:lombok:${lombokVersion}")
+        implementation("com.google.guava:guava:${guavaVersion}")
+        implementation("org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}")
+        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringBootStarterVersion}")
+        implementation("org.mybatis:mybatis-typehandlers-jsr310:${mybatisTypeHandlersJsr310Version}")
+        implementation("org.apache.commons:commons-lang3:${apacheCommonsLang3Version}")
+
         compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    processResources {
+        from("src/main/java") {
+            include("**/*.xml")
+        }
     }
 
     compileKotlin {
@@ -78,12 +97,6 @@ subprojects {
             freeCompilerArgs = ["-Xjsr305=strict"]
             jvmTarget = "1.8"
         }
-    }
-    
-    clean.doLast {
-        file("${projectDir}/out").deleteDir()
-        file("${rootDir}/out").deleteDir()
-        file("${rootDir}/build").deleteDir()
     }
 
     compileJava.dependsOn(processResources)

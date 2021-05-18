@@ -1,24 +1,22 @@
 dependencies {
-    compile project(":ocean-core")
-    compile("org.springframework.boot:spring-boot-starter")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile("org.springframework.boot:spring-boot-starter-aop")
-    compile("org.springframework.boot:spring-boot-starter-cache")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-data-redis")
-    compile("org.springframework.boot:spring-boot-starter-mail")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${springSecurityOAuth2AutoConfigurationVersion}") {
+    implementation project(":ocean-core")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${springSecurityOAuth2AutoConfigurationVersion}") {
         exclude group: "org.codehaus.jackson"
     }
-    compile("org.springframework.security:spring-security-data")
+    implementation("org.springframework.security:spring-security-data")
 
-    compile("mysql:mysql-connector-java:${mysqlConnectorVersion}")
+    implementation("mysql:mysql-connector-java:${mysqlConnectorVersion}")
 
-    compile("io.springfox:springfox-swagger2:${springfoxSwagger2Version}")
-    compile("io.springfox:springfox-swagger-ui:${springfoxSwagger2Version}")
-    compile("io.springfox:springfox-bean-validators:${springfoxSwagger2Version}")
+    implementation("io.springfox:springfox-boot-starter:${springfoxVersion}")
 
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
 }
