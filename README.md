@@ -77,13 +77,13 @@ INSERT INTO oc_user_role_ref(`username`, `authority`) VALUES ('lw900925', 'ADMIN
 INSERT INTO oc_user_role_ref(`username`, `authority`) VALUES ('lw900925', 'DEVELOPER');
 INSERT INTO oc_user_role_ref(`username`, `authority`) VALUES ('lw900925', 'USER');
 
-INSERT INTO ocean.oc_resource (oid, creation_date, creator, modified_date, modifier, version, description, resource_name, uri) VALUES (1392042675661029377, '2021-05-11 17:03:31.433000', 'lw900925', '2021-05-11 17:49:16.135000', 'lw900925', 2, '用户管理', '用户管理', '/users/**');
-INSERT INTO ocean.oc_resource (oid, creation_date, creator, modified_date, modifier, version, description, resource_name, uri) VALUES (1392043265887682562, '2021-05-11 17:05:52.172000', 'lw900925', '2021-05-11 17:49:51.051000', 'lw900925', 2, '角色管理', '角色管理', '/roles/**');
-INSERT INTO ocean.oc_resource (oid, creation_date, creator, modified_date, modifier, version, description, resource_name, uri) VALUES (1392043741232324610, '2021-05-11 17:07:45.484000', 'lw900925', '2021-05-11 17:50:05.571000', 'lw900925', 2, '资源管理', '资源管理', '/resources/**');
+INSERT INTO oc_resource (oid, creation_date, creator, modified_date, modifier, version, description, resource_name, uri) VALUES (1392042675661029377, '2021-05-11 17:03:31.433000', 'lw900925', '2021-05-11 17:49:16.135000', 'lw900925', 2, '用户管理', '用户管理', '/users/**');
+INSERT INTO oc_resource (oid, creation_date, creator, modified_date, modifier, version, description, resource_name, uri) VALUES (1392043265887682562, '2021-05-11 17:05:52.172000', 'lw900925', '2021-05-11 17:49:51.051000', 'lw900925', 2, '角色管理', '角色管理', '/roles/**');
+INSERT INTO oc_resource (oid, creation_date, creator, modified_date, modifier, version, description, resource_name, uri) VALUES (1392043741232324610, '2021-05-11 17:07:45.484000', 'lw900925', '2021-05-11 17:50:05.571000', 'lw900925', 2, '资源管理', '资源管理', '/resources/**');
 
-INSERT INTO ocean.oc_resource_role_ref (authority, oid) VALUES ('ADMIN', 1392042675661029377);
-INSERT INTO ocean.oc_resource_role_ref (authority, oid) VALUES ('ADMIN', 1392043265887682562);
-INSERT INTO ocean.oc_resource_role_ref (authority, oid) VALUES ('ADMIN', 1392043741232324610);
+INSERT INTO oc_resource_role_ref (authority, oid) VALUES ('ADMIN', 1392042675661029377);
+INSERT INTO oc_resource_role_ref (authority, oid) VALUES ('ADMIN', 1392043265887682562);
+INSERT INTO oc_resource_role_ref (authority, oid) VALUES ('ADMIN', 1392043741232324610);
 ```
 
 用户登陆密码为`123456`。
