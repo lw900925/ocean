@@ -1,8 +1,8 @@
 package io.lw900925.ocean.restful.controller;
 
+import io.lw900925.ocean.core.model.entity.User;
 import io.lw900925.ocean.restful.service.UserService;
 import io.swagger.annotations.*;
-import io.lw900925.ocean.core.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

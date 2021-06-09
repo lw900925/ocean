@@ -2,6 +2,7 @@ package io.lw900925.ocean.restful.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lw900925.ocean.core.repository.jpa.ResourceRepository;
+import io.lw900925.ocean.core.repository.mybatis.mapper.RoleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Autowired
     private ResourceRepository resourceRepository;
+    @Resource
+    private RoleMapper roleMapper;
 
     @Autowired
     private ResourceServerExtensionProperties resourceServerExtensionProperties;
@@ -73,6 +77,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public FilterInvocationSecurityMetadataSource urlFilterInvocationSecurityMetadataSource() {
         UrlFilterInvocationSecurityMetadataSource securityMetadataSource = new UrlFilterInvocationSecurityMetadataSource();
         securityMetadataSource.setResourceRepository(resourceRepository);
+        securityMetadataSource.setRoleMapper(roleMapper);
         securityMetadataSource.setIgnoreUrls(resourceServerExtensionProperties.getIgnoreUrls().toArray(new String[0]));
         return securityMetadataSource;
     }
@@ -85,7 +90,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     // ---------- Properties configuration ----------
     @ConfigurationProperties(prefix = "security.oauth2.resource")
-    public class ResourceServerExtensionProperties {
+    public static class ResourceServerExtensionProperties {
 
         private List<String> ignoreUrls = new ArrayList<>();
 

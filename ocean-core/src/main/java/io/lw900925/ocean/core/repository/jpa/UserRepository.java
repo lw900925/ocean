@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface UserRepository extends JpaRepository<User, String>, JpaSpecificationExecutor<User> {
     User findByPhoneNumber(String phoneNumber);
-
     User findByEmail(String email);
-
     Page<User> findAllByUsernameStartingWith(String username, Pageable pageable);
 }

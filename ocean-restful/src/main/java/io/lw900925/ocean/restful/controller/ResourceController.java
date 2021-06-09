@@ -1,8 +1,11 @@
 package io.lw900925.ocean.restful.controller;
 
 import io.lw900925.ocean.core.model.entity.Resource;
-import io.swagger.annotations.*;
 import io.lw900925.ocean.restful.service.ResourceService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +33,7 @@ public class ResourceController {
         return ResponseEntity.ok(resourceService.page(search, pageable));
     }
 
-    @ApiOperation(value = "获取资源")
+    @ApiOperation(value = "资源详情")
     @GetMapping("/{resourceId}")
     public ResponseEntity<Resource> get(@PathVariable("resourceId") Long resourceId) {
         return ResponseEntity.ok(resourceService.get(resourceId));
@@ -39,7 +42,7 @@ public class ResourceController {
     @ApiOperation(value = "新建资源")
     @PostMapping
     public ResponseEntity<Resource> save(@RequestBody @Validated Resource resource) {
-        return ResponseEntity.ok(resourceService.save(resource));
+        return ResponseEntity.ok(resourceService.create(resource));
     }
 
     @ApiOperation(value = "更新资源")
@@ -53,19 +56,5 @@ public class ResourceController {
     public ResponseEntity<Void> delete(@PathVariable("resourceId") Long resourceId) {
         resourceService.delete(resourceId);
         return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "资源授权")
-    @PutMapping("/{resourceId}/grant")
-    public ResponseEntity<Resource> grant(@ApiParam(name = "resourceId", value = "资源ID", required = true) @PathVariable("resourceId") Long resourceId,
-                                          @ApiParam(name = "authority", value = "角色名", required = true) @RequestParam String authority) {
-        return ResponseEntity.ok(resourceService.grant(resourceId, authority));
-    }
-
-    @ApiOperation(value = "回收权限")
-    @PutMapping("/{resourceId}/revoke")
-    public ResponseEntity<Resource> revoke(@ApiParam(name = "resourceId", value = "资源ID", required = true) @PathVariable("resourceId") Long resourceId,
-                                          @ApiParam(name = "authority", value = "角色名", required = true) @RequestParam String authority) {
-        return ResponseEntity.ok(resourceService.revoke(resourceId, authority));
     }
 }

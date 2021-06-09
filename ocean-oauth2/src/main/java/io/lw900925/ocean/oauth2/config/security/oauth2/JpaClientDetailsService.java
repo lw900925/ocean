@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.provider.ClientRegistrationException;
 
 public class JpaClientDetailsService implements ClientDetailsService {
 
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     public JpaClientDetailsService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;

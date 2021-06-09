@@ -1,5 +1,7 @@
 package io.lw900925.ocean.support.jsr303.constraints;
 
+import io.lw900925.ocean.support.jsr303.constraints.ContainsEnum.List;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
@@ -7,10 +9,7 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import io.lw900925.ocean.support.jsr303.constraints.ContainsEnum.List;
-
 import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })

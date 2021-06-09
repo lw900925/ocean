@@ -1,9 +1,9 @@
 package io.lw900925.ocean.restful.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.lw900925.ocean.core.model.entity.User;
 import io.lw900925.ocean.core.repository.jpa.UserRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

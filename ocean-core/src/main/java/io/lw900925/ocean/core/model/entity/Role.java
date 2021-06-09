@@ -1,6 +1,5 @@
 package io.lw900925.ocean.core.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.GenericGenerator;
@@ -26,11 +25,10 @@ public class Role implements GrantedAuthority {
     @ApiModelProperty(value = "描述")
     private String description;
 
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "oc_resource_role_ref",
+    @JoinTable(name = "oc_role_resource_ref",
             joinColumns = {@JoinColumn(name = "authority", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "oid", nullable = false)})
+            inverseJoinColumns = {@JoinColumn(name = "resource_id", nullable = false)})
     private List<Resource> resources = new ArrayList<>();
 
     public Role() {
@@ -56,5 +54,13 @@ public class Role implements GrantedAuthority {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
     }
 }

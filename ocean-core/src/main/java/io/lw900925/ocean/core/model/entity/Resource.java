@@ -1,13 +1,11 @@
 package io.lw900925.ocean.core.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "oc_resource")
@@ -24,13 +22,6 @@ public class Resource extends JpaBaseEntity {
     @ApiModelProperty(value = "URI")
     @NotEmpty
     private String uri;
-
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "oc_resource_role_ref",
-            joinColumns = { @JoinColumn(name = "oid", nullable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "authority", nullable = false) })
-    private List<Role> roles = new ArrayList<>();
 
     public String getResourceName() {
         return resourceName;
@@ -54,13 +45,5 @@ public class Resource extends JpaBaseEntity {
 
     public void setUri(String uri) {
         this.uri = uri;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 }

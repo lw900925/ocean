@@ -1,5 +1,6 @@
 package io.lw900925.ocean.restful.service;
 
+import com.google.common.collect.Sets;
 import io.lw900925.ocean.core.model.entity.Role;
 import io.lw900925.ocean.core.model.entity.User;
 import io.lw900925.ocean.core.model.entity.UserProfile;
@@ -121,7 +122,7 @@ public class UserService {
         User user = userRepository.findById(username).orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND, "E000001", username));
         userRepository.delete(user);
         // 删除用户角色的关联，需要设置一个空的集合，否则JSON序列化会报错
-        user.setAuthorities(new HashSet<>());
+        user.setAuthorities(Sets.newHashSet());
         return user;
     }
 }

@@ -3,8 +3,8 @@
 
 <mapper namespace="io.lw900925.ocean.core.repository.mybatis.mapper.RoleMapper">
     <resultMap id="BaseResultMap" type="io.lw900925.ocean.core.model.entity.Role">
-        <id column="authority" jdbcType="VARCHAR" property="authority" />
-        <result column="description" jdbcType="VARCHAR" property="description" />
+        <id column="authority" jdbcType="VARCHAR" property="authority"/>
+        <result column="`description`" jdbcType="VARCHAR" property="description"/>
     </resultMap>
 
     <sql id="columns">
@@ -18,7 +18,7 @@
 
     <select id="selectOne" resultMap="BaseResultMap">
         SELECT
-            <include refid="columns" />
+        <include refid="columns"/>
         FROM oc_role
         WHERE authority = #{authority}
     </select>
@@ -35,10 +35,35 @@
 
     </update>
 
-    <select id="countByAuthorityReference" resultType="java.lang.Long">
-        SELECT COUNT(b.authority)
-        FROM oc_role a, oc_user_role_ref b
+    <select id="selectByUserReference" resultMap="BaseResultMap">
+        <![CDATA[
+        SELECT a.authority,
+               a.`description`
+        FROM oc_role a,
+             oc_user_role_ref b
+        WHERE a.authority = b.authority
+          AND b.username = #{username}
+        ]]>
+    </select>
+
+    <select id="selectByResourceReference" resultMap="BaseResultMap">
+        <![CDATA[
+        SELECT a.authority     AS authority,
+               a.`description` AS description
+        FROM oc_role a,
+             oc_role_resource_ref b
+        WHERE a.authority = b.authority
+          AND b.resource_id = #{resourceId}
+        ]]>
+    </select>
+
+    <select id="selectReferenceUsernames" resultType="java.util.List">
+        <![CDATA[
+        SELECT b.username
+        FROM oc_role a,
+             oc_user_role_ref b
         WHERE a.authority = b.authority
           AND a.authority = #{authority}
+        ]]>
     </select>
 </mapper>

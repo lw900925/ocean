@@ -3,6 +3,7 @@ package io.lw900925.ocean.restful.config.security;
 import io.lw900925.ocean.core.model.entity.Resource;
 import io.lw900925.ocean.core.model.entity.Role;
 import io.lw900925.ocean.core.repository.jpa.ResourceRepository;
+import io.lw900925.ocean.core.repository.mybatis.mapper.RoleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.ConfigAttribute;
@@ -10,7 +11,6 @@ import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,6 +22,7 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
     private String[] ignoreUrls = new String[] {};
 
     private ResourceRepository resourceRepository;
+    private RoleMapper roleMapper;
 
     private final AntPathMatcher MATCHER = new AntPathMatcher();
 
@@ -47,8 +48,11 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
         Resource requestResource = resources.stream().filter(resource -> MATCHER.match(resource.getUri(), requestUri)).findFirst().orElse(null);
 
         // 获取资源中绑定的角色，创建ConfigAttribute对象
-        if (requestResource != null && !CollectionUtils.isEmpty(requestResource.getRoles())) {
-            return SecurityConfig.createList(requestResource.getRoles().stream().map(Role::getAuthority).toArray(String[]::new));
+        if (requestResource != null) {
+            List<Role> roles = roleMapper.selectByResourceReference(requestResource.getOid());
+            if (roles.size() > 0) {
+                return SecurityConfig.createList(roles.stream().map(Role::getAuthority).toArray(String[]::new));
+            }
         }
 
         return SecurityConfig.createList("permission_denied");
@@ -72,5 +76,9 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
 
     public void setResourceRepository(ResourceRepository resourceRepository) {
         this.resourceRepository = resourceRepository;
+    }
+
+    public void setRoleMapper(RoleMapper roleMapper) {
+        this.roleMapper = roleMapper;
     }
 }

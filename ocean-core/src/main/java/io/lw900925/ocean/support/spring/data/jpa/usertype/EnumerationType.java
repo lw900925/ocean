@@ -1,10 +1,10 @@
 package io.lw900925.ocean.support.spring.data.jpa.usertype;
 
+import io.lw900925.ocean.support.enums.EnumAttribute;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.DynamicParameterizedType;
 import org.hibernate.usertype.UserType;
-import io.lw900925.ocean.support.enums.EnumAttribute;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;

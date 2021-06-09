@@ -1,10 +1,10 @@
 package io.lw900925.ocean.restful.config;
 
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.session.Configuration;
 import io.lw900925.ocean.core.keygen.SnowFlakeKeyGenerator;
 import io.lw900925.ocean.support.mybatis.plugins.AuditingInterceptor;
 import io.lw900925.ocean.support.mybatis.plugins.KeyGenInterceptor;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.springframework.boot.SpringBootConfiguration;

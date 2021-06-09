@@ -6,19 +6,15 @@
         <id column="oid" jdbcType="VARCHAR" property="oid" />
 
         <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
-        <result column="group" jdbcType="VARCHAR" property="group" />
-        <result column="qualifier" jdbcType="VARCHAR" property="qualifier" />
-        <result column="url" jdbcType="VARCHAR" property="url" />
         <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="uri" jdbcType="VARCHAR" property="uri" />
     </resultMap>
 
     <sql id="columns">
         oid,
         resource_name,
-        `group`,
-        qualifier,
-        url,
-        `description`
+        `description`,
+        uri
     </sql>
 
     <select id="select" resultMap="BaseResultMap">
@@ -33,18 +29,14 @@
         INSERT INTO oc_resource (
             oid,
             resource_name,
-            `group`,
-            qualifier,
-            url,
-            `description`
+            `description`,
+            uri
         ) VALUES (
             #{oid},
             #{resourceName},
-            #{group},
-            #{qualifier},
-            #{url},
-            #{description}
-        )
+            #{description},
+            #{uri}
+         )
     </insert>
 
     <delete id="delete">
@@ -54,4 +46,14 @@
     <update id="update">
 
     </update>
+
+    <select id="selectReferenceAuthorities" resultType="java.lang.String">
+        <![CDATA[
+        SELECT
+            b.authority
+        FROM oc_resource a, oc_role_resource_ref b
+        WHERE a.oid = b.resource_id
+          AND a.oid = #{resourceId}
+        ]]>
+    </select>
 </mapper>

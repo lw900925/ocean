@@ -1,8 +1,8 @@
 package io.lw900925.ocean.restful.controller;
 
+import io.lw900925.ocean.core.model.entity.Role;
 import io.lw900925.ocean.restful.service.RoleService;
 import io.swagger.annotations.*;
-import io.lw900925.ocean.core.model.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,13 +39,13 @@ public class RoleController {
     @ApiOperation(value = "新建角色")
     @PostMapping
     public ResponseEntity<Role> create(@RequestBody @Validated Role role) {
-        return ResponseEntity.ok(roleService.create(role));
+        return ResponseEntity.ok(roleService.saveOrUpdate(role));
     }
 
     @ApiOperation(value = "更新角色")
     @PutMapping
     public ResponseEntity<Role> update(@RequestBody @Validated Role role) {
-        return ResponseEntity.ok(roleService.update(role));
+        return ResponseEntity.ok(roleService.saveOrUpdate(role));
     }
 
     @ApiOperation(value = "删除角色")

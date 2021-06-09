@@ -24,7 +24,7 @@ import java.security.KeyPair;
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
     @Autowired
     private ClientRepository clientRepository;
     @Autowired

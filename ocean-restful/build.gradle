@@ -8,6 +8,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${springSecurityOAuth2AutoConfigurationVersion}") {
         exclude group: "org.codehaus.jackson"
@@ -17,6 +18,13 @@ dependencies {
     implementation("mysql:mysql-connector-java:${mysqlConnectorVersion}")
 
     implementation("io.springfox:springfox-boot-starter:${springfoxVersion}")
+
+    implementation("com.squareup.okhttp3:okhttp:${okhttp3Version}")
+
+    implementation("org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}")
+
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringBootStarterVersion}")
+    implementation("org.mybatis:mybatis-typehandlers-jsr310:${mybatisTypeHandlersJsr310Version}")
 
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
 }

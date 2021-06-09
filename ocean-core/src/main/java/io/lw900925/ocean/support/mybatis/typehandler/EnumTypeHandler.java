@@ -1,9 +1,9 @@
 package io.lw900925.ocean.support.mybatis.typehandler;
 
+import io.lw900925.ocean.support.enums.EnumAttribute;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
-import io.lw900925.ocean.support.enums.EnumAttribute;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

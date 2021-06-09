@@ -1,9 +1,9 @@
 package io.lw900925.ocean.support.spring.data.jpa.id;
 
+import io.lw900925.ocean.core.keygen.SnowFlakeKeyGenerator;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
-import io.lw900925.ocean.core.keygen.SnowFlakeKeyGenerator;
 
 import java.io.Serializable;
 

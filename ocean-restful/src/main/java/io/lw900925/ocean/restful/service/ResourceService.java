@@ -1,9 +1,9 @@
 package io.lw900925.ocean.restful.service;
 
 import io.lw900925.ocean.core.model.entity.Resource;
-import io.lw900925.ocean.core.model.entity.Role;
 import io.lw900925.ocean.core.repository.jpa.ResourceRepository;
 import io.lw900925.ocean.core.repository.jpa.RoleRepository;
+import io.lw900925.ocean.core.repository.mybatis.mapper.ResourceMapper;
 import io.lw900925.ocean.support.spring.web.exception.AppException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,6 +24,9 @@ public class ResourceService {
     private ResourceRepository resourceRepository;
     @Autowired
     private RoleRepository roleRepository;
+
+    @javax.annotation.Resource
+    private ResourceMapper resourceMapper;
 
     @Transactional(readOnly = true)
     public Page<Resource> page(String search, Pageable pageable) {
@@ -40,7 +42,7 @@ public class ResourceService {
         return resourceRepository.findById(resourceId).orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND, "E000002", resourceId));
     }
 
-    public Resource save(Resource resource) {
+    public Resource create(Resource resource) {
         Resource dbResource = resourceRepository.findByResourceName(resource.getResourceName());
         if (dbResource != null) {
             throw new AppException(HttpStatus.CONFLICT, "E000001", resource.getResourceName());
@@ -65,31 +67,15 @@ public class ResourceService {
 
     public void delete(Long resourceId) {
         if (resourceId == null) {
-            throw new AppException(HttpStatus.BAD_REQUEST, "E000003", "resourceId");
+            throw new AppException(HttpStatus.BAD_REQUEST, "E000003", resourceId);
         }
+
+        // 判断资源是否被引用
+        List<String> authorities = resourceMapper.selectReferenceAuthorities(resourceId);
+        if (authorities.size() > 0) {
+            throw new AppException("E200001", resourceId);
+        }
+
         resourceRepository.deleteById(resourceId);
-    }
-
-    public Resource grant(Long resourceId, String authority) {
-        Resource resource = resourceRepository.findById(resourceId).orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND, "E000002", resourceId));
-        Role role = roleRepository.findById(authority).orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND, "E000002", authority));
-
-        List<Role> roles = resource.getRoles();
-        long count = roles.stream().filter(r -> r.getAuthority().equals(authority)).count();
-        if (count > 0) {
-            throw new AppException(HttpStatus.CONFLICT, "E000001", authority);
-        }
-        roles.add(role);
-
-        return resourceRepository.save(resource);
-    }
-
-    public Resource revoke(Long resourceId, String authority) {
-        Resource resource = resourceRepository.findById(resourceId).orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND, "E000002", resourceId));
-        Role role = roleRepository.findById(authority).orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND, "E000002", authority));
-
-        List<Role> roles = resource.getRoles().stream().filter(r -> !r.getAuthority().equals(role.getAuthority())).collect(Collectors.toList());
-        resource.setRoles(roles);
-        return resourceRepository.save(resource);
     }
 }

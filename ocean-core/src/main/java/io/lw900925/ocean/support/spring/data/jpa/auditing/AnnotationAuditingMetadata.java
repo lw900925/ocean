@@ -20,7 +20,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.convert.Jsr310Converters;
-import org.springframework.data.convert.ThreeTenBackPortConverters;
 import org.springframework.data.util.Optionals;
 import org.springframework.data.util.ReflectionUtils;
 import org.springframework.util.Assert;
@@ -103,7 +102,7 @@ public final class AnnotationAuditingMetadata {
 
             Class<?> type = it.getType();
 
-            if (Jsr310Converters.supports(type) || ThreeTenBackPortConverters.supports(type)) {
+            if (Jsr310Converters.supports(type)) {
                 return;
             }
 

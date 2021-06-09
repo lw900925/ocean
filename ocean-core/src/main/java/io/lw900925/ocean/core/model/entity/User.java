@@ -210,7 +210,7 @@ public class User implements UserDetails {
     /**
      * 自定义枚举类字段
      */
-    public enum ClientCapability implements EnumAttribute {
+    public enum ClientCapability implements EnumAttribute<Integer> {
         CUSTOMER(1),
         AUDITOR(2),
         SYS_ADMINISTRATOR(3);
